@@ -21,6 +21,7 @@ eigenVectors = eigenVectors(:,p:-1:1);
 
 %% Question (a)
 
+% [Method 1] Scree Plot
 figure();
 hold on
 
@@ -33,6 +34,23 @@ ylabel('Eigenvalue')
 title('Scree plot')
 grid on
 
+% [Method 2] Explained variance percentage
+
+td = 100*cumsum(eigenValues)/sum(eigenValues);
+figure();
+
+plot(1:p,td,'o-k');
+xlabel('Index');
+ylabel('Variance Percentage');
+title('Explained Variance percentage');
+grid on;
+
+% [Method 3] Variance size
+eigenvaluesAvg = mean(eigenValues);
+thresholdPercentage = 0.7;
+threshold = thresholdPercentage * eigenvaluesAvg;
+index = find(eigenValues > threshold);
+fprintf('Dimension d using size of the variance: %d \n',length(index));
 %% Question (b)
 
 d = 2;

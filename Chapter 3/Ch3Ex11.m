@@ -76,7 +76,7 @@ end
 rejections(2) = rejections(2) / M;
 
 
-%% ==== Rendom Permutation Method ==== 
+%% ==== Random Permutation Method ==== 
 mean_difference = zeros(M, B+1);
 
 for i=1:M

@@ -56,5 +56,3 @@ ROrdSorted = RSquareOrd(idx,:);
 RAdjSorted = RSquareAdj(idx,:);  
 
 fprintf("\nBest fit for param No. %d\n", ROrdSorted(parameters - 1, 2));
-
-

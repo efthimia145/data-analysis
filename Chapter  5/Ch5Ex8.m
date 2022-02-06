@@ -7,11 +7,11 @@ clear;
 close all;
 clc;
 
-%% IImport data
+%% Import data
 physical_txt = importdata('physical.txt');
 physical_data = physical_txt.data;
 
-parameters = 11;
+parameters = width(physical_data);
 W = physical_data(:, 1);
 
 figure()
@@ -48,3 +48,25 @@ ROrdSorted = RSquareOrd(idx,:);
 RAdjSorted = RSquareAdj(idx,:);  
 
 fprintf("Best fit for param No. %d\n", ROrdSorted(parameters - 1, 2));
+
+%% Step wise regression
+
+X = physical_data(:, 2:end);
+Y = physical_data(:, 1);
+
+[b,~,~,model,stats] = stepwisefit(X,Y);
+b0 = stats.intercept;
+b = [b0; b(model)];     
+
+Ypred = [ones(length(X),1) X(:,model)]*b;
+errors = Y - Ypred;
+rmse = stats.rmse;
+
+n = height(physical_data);
+se = rmse/(n-2);
+
+Rsq = @(ypred,y) 1-sum((ypred-y).^2)/sum((y-mean(y)).^2);
+adjRsq = @(ypred,y,n,k) ( 1 - (n-1)/(n-1-k)*sum((ypred-y).^2)/sum((y-mean(y)).^2) );
+
+ROrd = 1 - stats.SSresid/stats.SStotal;
+RAdj = adjRsq(Ypred,Y,length(Y),length(b));

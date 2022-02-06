@@ -12,7 +12,7 @@ A3 = [unifrnd(-1, 1), unifrnd(-1, 1), unifrnd(-1, 1); unifrnd(-1, 1), unifrnd(-1
 n = 10000;
 prewhiten_value = 1;
 
-p = 3;
+p = 2;
 
 % Sound data 
 chirpData = load('chirp.mat');
@@ -21,7 +21,7 @@ s1 = chirpData.y;
 gongData = load('gong.mat');
 s2 = gongData.y;
 
-% Covariancec matrix
+% Covariances matrix
 S = [s1(1:n), s2(1:n)];
 
 figure();
@@ -64,8 +64,8 @@ if p == 2
     title('Mixed signal 2 [p = 2]');
     grid on;
 
-    y2 = x2 - repmat(mean(x2),[n 1]);
-
+    y2 = x2 - mean(x2);
+    
     if prewhiten_value
         y2 = prewhiten(y2);
     end
@@ -82,7 +82,7 @@ if p == 2
     ylabel('s1(t) reconstr.');
     title('ICA reconstructed s1 VS source [p = 2]');
     hold off;
-    legend
+    legend('ICA reconstructed', 'Source');
     grid on;
 
     figure();
@@ -94,7 +94,7 @@ if p == 2
     ylabel('s2(t) reconstr.');
     title('ICA reconstructed s2 VS source [p = 2]');
     hold off;
-    legend
+    legend('ICA reconstructed', 'Source');
     grid on;
     
 end
@@ -132,7 +132,7 @@ if p == 3
     title('Mixed signal 3 [p = 3]');
     grid on;
 
-    y3 = x3 - repmat(mean(x3),[n 1]);
+    y3 = x3 - mean(x3);
 
     mdl = rica(y3, p);
     z3 = transform(mdl, y3);
@@ -146,7 +146,7 @@ if p == 3
     ylabel('s1(t) reconstr.');
     title('ICA reconstructed s1 VS source [p = 3]');
     hold off;
-    legend
+    legend('ICA reconstructed', 'Source');
     grid on;
 
     figure();
@@ -158,7 +158,7 @@ if p == 3
     ylabel('s2(t) reconstr.');
     title('ICA reconstructed s2 VS source [p = 3]');
     hold off;
-    legend
+    legend('ICA reconstructed', 'Source');
     grid on;
 
     figure();
@@ -170,7 +170,7 @@ if p == 3
     ylabel('s3(t) reconstr.');
     title('ICA reconstructed s3 VS source [p = 3]');
     hold off;
-    legend
+    legend('ICA reconstructed', 'Source');
     grid on;
     
 end

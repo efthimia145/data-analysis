@@ -43,7 +43,7 @@ title('Observed points in 3D');
 %% Question (a)
 % Covariances matrix
 
-Xc = transformedX - repmat(sum(transformedX)/n, n, 1);
+Xc = transformedX - mean(transformedX);
 
 S = 1/(n-1)*(Xc')*Xc;
 
@@ -51,7 +51,7 @@ S = 1/(n-1)*(Xc')*Xc;
 
 [Seigenvectors, Seigenvalues] = eig(S);
 
-Seigenvalues = diag(Seigenvalues);
+Seigenvalues = sort(diag(Seigenvalues), 'descend');
 
 %% Question (b)
 
@@ -66,7 +66,7 @@ grid on;
 Y = (Seigenvectors * Xc')';
 
 figure();
-plot3(Y(:,1), Y(:,2), Y(:,3), '*');
+plot3(Y(:,1), Y(:,2), Y(:,3), '*'); 
 xlabel('PC1');
 ylabel('PC2');
 zlabel('PC3');
@@ -83,6 +83,7 @@ plot(X(:,1), X(:,2), '*');
 plot(Y2(:,1), Y2(:,2), '*k');
 xlabel('PC1');
 ylabel('PC2');
+legend();
 title('Principal Component Scores [2D]');
 hold off;
 grid on;

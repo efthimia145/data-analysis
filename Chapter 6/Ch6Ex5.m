@@ -41,9 +41,13 @@ bOLS = V*inv(S)*(U')*y;
 yOLS = X*bOLS;
 
 % PCR 
+
+% Calculation of Principal Components 
 [PCALoadings,PCAScores,PCAVar] = pca(X,'Economy',false);
 
 PCAVar = PCAVar/sum(PCAVar);
+
+% k selection based on the per variance explained criterio
 figure();
 plot(1:p,cumsum(100*PCAVar),'-bo');
 xlabel('Number of PCA components');
@@ -51,8 +55,10 @@ ylabel('Percent Variance Explained in Y');
 grid on;
 
 k = 4;
+% Regression model estimation
 betaPCR = regress(y-mean(y), PCAScores(:,1:k));
 betaPCR = PCALoadings(:,1:k)*betaPCR;
+% Transformation 
 betaPCR = [mean(y) - mean(X)*betaPCR; betaPCR];
 yfitPCR = [ones(n,1) X]*betaPCR;
 

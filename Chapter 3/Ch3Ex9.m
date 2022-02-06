@@ -11,7 +11,7 @@ M = 100; % Num of Samples
 n = 10;  % Sample size of X 
 m = 12;  % Sample size of Y 
 squared = 0; % Set to 1 for Question (b)
-typical = 0; % Set to O for Question (c) 
+typical = 1; % Set to O for Question (c) 
 
 X = randn(M, n);
 Y = randn(M, m);
@@ -63,5 +63,3 @@ for i=1:M
     bootstrap_ci(i, 1) = bootstat_difference(lower_limit, i);
     bootstrap_ci(i, 2) = bootstat_difference(upper_limit, i);    
 end
-
-

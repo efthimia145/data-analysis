@@ -9,9 +9,7 @@ clc;
 temperature = importdata('temperature_Thessaloniki.dat');
 raining = importdata('raining_Thessaloniki.dat');
 
-% [n, m]=size(temperature);
-n = 39;
-m = 12;
+[n, m]=size(temperature);
 alpha = 0.05;
 
 r_temp = zeros(2,2,m);
@@ -29,7 +27,7 @@ for i=1:1:m
         p_in = p_in + 1;
     end
 end
-fprintf('Percentace of rho in CI = %1.2f\n', (p_in/m)*100);
+fprintf('Percentage of rho in CI = %1.2f\n', (p_in/m)*100);
 
 %% Randomization
 

@@ -37,5 +37,5 @@ b0 = sort(b0);
 cib0 = [b0(25) b0(95)];
 cib1 = [b1(25) b1(95)];
 
-fprintf("[b0] CI = [%.4f, %.4f]\n", cib0(1), cib0(2));
+fprintf("[b0] CI = [%.4f, %.    4f]\n", cib0(1), cib0(2));
 fprintf("[b1] CI = [%.4f, %.4f]", cib1(1), cib1(2));

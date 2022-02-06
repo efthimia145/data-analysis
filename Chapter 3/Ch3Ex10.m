@@ -67,7 +67,7 @@ for null_hypothesis=1:length(mu0)
     counter_h = 0;
 
     for i=1:M
-        [~, rnk(:,i)] = ismember(bootstat_Xbar(:,i), bootstat_Xbar_sorted(:,i));
+        [~, rnk(:,i)] = ismember(bootstat_Xbar(:,i), bootstat_Xbar_sorted(:,i))
 
         if rnk(B+1, i) < lower_limit || rnk(B+1, i) > upper_limit
             counter_h = counter_h + 1;

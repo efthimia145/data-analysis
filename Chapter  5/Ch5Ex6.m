@@ -72,7 +72,7 @@ for i = 1:length(functions)
     
     % Diagnostic plot of standardised error
     ei_standard = (Y - pred)/sqrt(mse(i));
-    figure(i*10)
+    figure(i*10);
     scatter(Y,ei_standard);
     hold on;
     grid on;

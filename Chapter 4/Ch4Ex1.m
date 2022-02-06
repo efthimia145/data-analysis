@@ -23,7 +23,6 @@ se_mean = se / sqrt(length(h2));
 fprintf("Uncertainty for each throw = %.4f\n", se);
 fprintf("Uncertainty for the mean of throws = %.4f\n", se_mean);
 
-
 alpha = 0.05;
 
 t_value = tinv(1-alpha/2, length(h2)-1);
@@ -89,9 +88,9 @@ uncertainty_h2C = std(h2C) / sqrt(length(h2C));
 
 uncertainty_eC = std(eC) / sqrt(length(eC));
 
-fprintf("Uncertainty for height h1 = %.4f", uncertainty_h1C);
-fprintf("Uncertainty for height h2 = %.4f", uncertainty_h2C);
-fprintf("Uncertainty for COR e = %.4f", uncertainty_eC);
+fprintf("Uncertainty for height h1 = %.4f\n", uncertainty_h1C);
+fprintf("Uncertainty for height h2 = %.4f\n", uncertainty_h2C);
+fprintf("Uncertainty for COR e = %.4f\n", uncertainty_eC);
 
 alpha = 0.05;
 
